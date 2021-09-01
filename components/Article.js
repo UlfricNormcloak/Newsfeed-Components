@@ -114,3 +114,53 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+//(step 1): grab the div that the rest of the articles will be attached to in the existing HTML, and continue following steps
+const allArticles = document.body.querySelector('.articles');
+
+//create the function that will be used for making the articles. Note the destructuring in the parameters is based on the keys in the array of objects above. These values are the format that must be followed in article maker in order to ensure the the one we are creating will be established in a way that matches to the DOM so that it can be placed on the DOM.
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+
+  //instantiate the elements- in other words, create the HTML elements that will be used in the contruction of the reuseable article card. In this case we were given example HTML commented out above and are asked to build to that format.
+  const divArticle = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const pClass = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const spanExpand = document.createElement('span');
+
+  //classes- add the appropriate classes, which will be used in the build
+  divArticle.classList.add('article');
+  pClass.classList.add('date');
+  spanExpand.classList.add('expandButton');
+
+  //set the parent child relationship, which means we are establishing how the elements are nested, relative to one another
+  divArticle.appendChild(articleTitle);
+  divArticle.appendChild(pClass);
+  divArticle.appendChild(p1);
+  divArticle.appendChild(p2);
+  divArticle.appendChild(p3);
+  divArticle.appendChild(spanExpand);
+
+  //populating the content, which is based on matching the content from the object array to the HTML element created to hold that particualr value
+  articleTitle.textContent = title;
+  pClass.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  spanExpand.textContent = '+'; //note the plus as the code indicated to expand the article//////////////////////
+
+  //(step: 2)add an event listener for the functionality of expanding the article card. Q: is 'open' a key word.
+  spanExpand.addEventListener('click', event => {
+    divArticle.classList.toggle('article-open');
+  })
+
+  //(step: 3)return the articles
+  return divArticle;
+}
+
+//(step: 4) Outside your function now, loop over the data. At each iteration you'll use your component to create a div.article element and append it to the DOM inside div.articles (see index.html).
+ data.map(article => {
+   const newArticle = articleMaker(article);//note the new variable declaration, which will then be used on the next line at the point that the articles are appended to the DOM
+   allArticles.appendChild(newArticle)//it is important to note that 'allArticles' comes from the original variable that was declared above the articleMaker function that was created here. The declaration of allArticles is grabbing the original, single, empty div in the existing HTML that all of the article cards will ultimately be attached to. The appendChild on this line is then taking the mapping of articleMaker into new articles from the line above. This format is the same as the guided project where the 'grabbing' of the class accordion in the variable accordion is used in an analogous way. See this example for another chance to review how the various lines of code relate to one another at this point
+ }) 
