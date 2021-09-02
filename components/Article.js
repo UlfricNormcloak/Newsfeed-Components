@@ -86,6 +86,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'this is my new article.',
+
+    date: 'August 4th, 2021',
+
+    firstParagraph: 'That was super simple! Just like that, we created a new component for each item in the array and added it to the DOM. No matter how many items are in the array, it will still work. One downside to this method is that we add the items to the DOM instantly, what if we wanted to create the components and add them at a different time?',
+
+    secondParagraph: 'That was super simple! Just like that, we created a new component for each item in the array and added it to the DOM. No matter how many items are in the array, it will still work. One downside to this method is that we add the items to the DOM instantly, what if we wanted to create the components and add them at a different time?',
+
+    thirdParagraph: "Now that we have an array of DOM elements (components) we can do whatever we'd like with them. We can wait to add the components to the DOM, or we can manipulate them further, the sky is the limit! Let's add them to the DOM now, using .forEach"
   }
 ];
 
@@ -164,3 +175,19 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
    const newArticle = articleMaker(article);//note the new variable declaration, which will then be used on the next line at the point that the articles are appended to the DOM
    allArticles.appendChild(newArticle)//it is important to note that 'allArticles' comes from the original variable that was declared above the articleMaker function that was created here. The declaration of allArticles is grabbing the original, single, empty div in the existing HTML that all of the article cards will ultimately be attached to. The appendChild on this line is then taking the mapping of articleMaker into new articles from the line above. This format is the same as the guided project where the 'grabbing' of the class accordion in the variable accordion is used in an analogous way. See this example for another chance to review how the various lines of code relate to one another at this point
  }) 
+
+ const anotherArticle = {
+   title: 'this is the title for demo',
+
+   date: 'September 1st, 2021',
+
+   firstParagraph: 'That was super simple! Just like that, we created a new component for each item in the array and added it to the DOM. No matter how many items are in the array, it will still work. One downside to this method is that we add the items to the DOM instantly, what if we wanted to create the components and add them at a different time?',
+    
+   secondParagraph: 'That was super simple! Just like that, we created a new component for each item in the array and added it to the DOM. No matter how many items are in the array, it will still work. One downside to this method is that we add the items to the DOM instantly, what if we wanted to create the components and add them at a different time?',
+    
+   thirdParagraph: "Now that we have an array of DOM elements (components) we can do whatever we'd like with them. We can wait to add the components to the DOM, or we can manipulate them further, the sky is the limit! Let's add them to the DOM now, using .forEach"
+
+ }
+
+ const newArticle2 = articleMaker(anotherArticle);
+ allArticles.appendChild(newArticle2);
